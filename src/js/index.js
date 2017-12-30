@@ -1,9 +1,13 @@
-/* global document */
+/* global document, window */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import WebFont from 'webfontloader';
-import App from './components/App.jsx';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import App from './components/App/container.jsx';
+import initialState from './services/initialState';
+import reducer from './services/reducer';
 /* eslint-ensable no-unused-vars */
 
 // styling
@@ -18,5 +22,20 @@ WebFont.load({
 // polyfill for older browswers
 require('es6-promise').polyfill();
 
+/* eslint-disable no-underscore-dangle */
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+/* eslint-enable */
+
+// setup store
+const store = createStore(
+  reducer,
+  initialState,
+  reduxDevTools,
+);
+
 // app init
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>
+  , document.getElementById('root'));
