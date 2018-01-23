@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import WebFont from 'webfontloader';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import App from './components/App/container.jsx';
+import App from './components/App.jsx';
 import initialState from './services/initialState';
 import reducer from './services/reducer';
 /* eslint-ensable no-unused-vars */
