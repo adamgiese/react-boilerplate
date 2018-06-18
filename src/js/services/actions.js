@@ -1,11 +1,8 @@
-export const testAction = () => (
+export const setUser = user => (
   {
-    type: 'TEST_ACTION',
+    type: 'SET_USER',
+    payload: user,
   }
 );
 
-export const testAnotherAction = () => (
-  {
-    type: 'TEST_ANOTHER_ACTION',
-  }
-);
+export const foo = 'bar';

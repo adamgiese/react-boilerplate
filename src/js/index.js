@@ -8,6 +8,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import App from './components/App.jsx';
 import initialState from './services/initialState';
 import reducer from './services/reducer';
+import firebase from './services/firebase';
+import { setUser } from './services/actions';
 /* eslint-ensable no-unused-vars */
 
 // styling
@@ -32,6 +34,14 @@ const store = createStore(
   initialState,
   reduxDevTools,
 );
+
+// signin user
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    store.dispatch(setUser(user));
+  }
+});
 
 // app init
 ReactDOM.render(

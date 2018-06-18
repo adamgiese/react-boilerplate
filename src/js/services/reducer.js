@@ -1,8 +1,8 @@
 const handleActions = (state = [], action) => {
-  const { type } = action;
+  const { type, payload } = action;
   switch (type) {
-    case 'TEST_ACTION':
-      return { ...state, hola: 'mundo' };
+    case 'SET_USER':
+      return { ...state, user: payload };
     default:
       return state;
   }

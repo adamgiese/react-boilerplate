@@ -1,29 +1,32 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { connect } from 'react-redux';
-import { testAction } from '../services/actions';
+import { setUser } from '../services/actions';
+import Auth from './Auth.jsx';
+import LoggedIn from './LoggedIn.jsx';
 /* eslint-ensable no-unused-vars */
 
 const mapStateToProps = state => ({
-  hola: state.hola,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
-  dispatchTestAction: () => {
-    dispatch(testAction());
+  dispatchSetUser: (user) => {
+    dispatch(setUser(user));
   },
 });
 
 const App = (props) => {
   const {
-    hola,
-    dispatchTestAction,
+    dispatchSetUser,
+    user,
   } = props;
+
   return (
     <div className='app'>
-      { hola ?
-        <h1 className='app-title'>Hola, {hola}!</h1>
-        : <button onClick={() => dispatchTestAction()}>Click Me</button>
+      { user
+        ? <LoggedIn />
+        : <Auth setUser={dispatchSetUser} />
       }
     </div>
   );
